@@ -42,7 +42,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Function that returns inverse of the  matrix input  to makeCacheMatrix 
 ## function. This method returns  the cached inverse, if available.
 ## Else computes the inverse, caches the inverse , and returns it
-## The function assumes that the cache is a square, invertible matrix 
+## The function assumes that the input is a square, invertible matrix 
 cacheSolve <- function(x, ...) {
 
        ## Get the inverse of of 'x' from makeCacheMatrix 
