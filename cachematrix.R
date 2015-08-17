@@ -4,8 +4,8 @@
 ##   3. set the inverse
 ##   4. get the inverse
 ## This function does not compute the inverse of the matrix.
-## Rather is used to as input for the function that computes inverse
-## and uses the list for caching the inverse computed
+## Rather it is used as input for the function that computes inverse
+## and uses the list in this function for caching the inverse computed
 
 makeCacheMatrix <- function(x = matrix()) {
        
@@ -39,20 +39,22 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Function that returns inverse of the  matrix input 
-## to makeCacheMatrix function. 
-## This method returns  the cached inverse, if available.
+## Function that returns inverse of the  matrix input  to makeCacheMatrix 
+## function. This method returns  the cached inverse, if available.
 ## Else computes the inverse, caches the inverse , and returns it
 ## The function assumes that the cache is a square, invertible matrix 
 cacheSolve <- function(x, ...) {
 
-       ## Return a matrix that is the inverse of 'x'
+       ## Get the inverse of of 'x' from makeCacheMatrix 
        inverse_x <- x$getInvMatrix()
        
+       ## If it is not null, return it
        if (!is.null(inverse_x)) {
               message("Getting the cached inverse matrix")
               return(inverse_x)
-       } else {
+       } 
+       ## Else compute, cache and return the inverse
+       else {
               inverse_x <- solve(x$getMatrix())
               x$setInvMatrix(inverse_x)
               return(inverse_x)
