@@ -9,14 +9,29 @@
 
 makeCacheMatrix <- function(x = matrix()) {
        
+       ## Check if input matirx is square and if not alert user 
+       ## on the possiblity of error while reversing
+       if(nrow(x) != ncol(x)){
+              message("The input matrix must be a square matrix.")   
+              message("Inversing the matrix will result in error")
+       }
+       
        ## Variable to hold the inverse of the input matrix
        inverseMatrix <- NULL
        
        ## Function to set the input matrix
        ## Also resets the inverse of matrix to null on new input
        setMatrix = function(y){
-              x <<- y
-              inverseMatrix <<- NULL
+              
+              ## check if input matrix is square or not before using it
+              if(nrow(y) == ncol(y)){
+                     x <<- y
+                     inverseMatrix <<- NULL
+              }
+              else{
+                     message("The input matrix must be a square matrix.")
+                     message("The input has been ignored.")
+              }
        }
        
        ## Function that returns the input matrix
@@ -39,12 +54,12 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Function that returns inverse of the  matrix input  to makeCacheMatrix 
+## Function that returns inverse of the  matrix input to makeCacheMatrix 
 ## function. This method returns  the cached inverse, if available.
 ## Else computes the inverse, caches the inverse , and returns it
 ## The function assumes that the input is a square, invertible matrix 
 cacheSolve <- function(x, ...) {
-
+       
        ## Get the inverse of of 'x' from makeCacheMatrix 
        inverse_x <- x$getInvMatrix()
        
